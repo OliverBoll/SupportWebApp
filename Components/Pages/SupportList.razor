@@ -1,0 +1,48 @@
+@page "/supportlist"
+
+@using SupportWebApp.Models
+@using SupportWebApp.Services
+@using Microsoft.AspNetCore.Components.Web
+
+@rendermode RenderMode.InteractiveServer
+
+@inject ICosmosDbService CosmosDbService
+
+<PageTitle>Henvendelser</PageTitle>
+
+<h1>Henvendelser</h1>
+
+@if (messages == null)
+{
+    <p>Indlæser...</p>
+}
+else if (messages.Count == 0)
+{
+    <p>Ingen henvendelser fundet.</p>
+}
+else
+{
+    @foreach (var message in messages)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>@message.Name</h5>
+
+                <p><strong>Email:</strong> @message.Email</p>
+                <p><strong>Telefon:</strong> @message.Phone</p>
+                <p><strong>Kategori:</strong> @message.Category</p>
+                <p><strong>Beskrivelse:</strong> @message.Description</p>
+                <p><strong>Dato:</strong> @message.Date</p>
+            </div>
+        </div>
+    }
+}
+
+@code {
+    private List<SupportMessage>? messages;
+
+    protected override async Task OnInitializedAsync()
+    {
+        messages = await CosmosDbService.GetSupportMessagesAsync();
+    }
+}
