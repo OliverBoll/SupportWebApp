@@ -10,161 +10,86 @@
 
 <PageTitle>Support</PageTitle>
 
-<h1>Support</h1>
+<header class="page-header">
+    <h1 class="page-title">Support</h1>
+    <p class="page-lead">Opret en ny supporthenvendelse.</p>
+</header>
 
-<p>Opret en ny supporthenvendelse.</p>
+<div class="form-card">
+    <EditForm Model="@supportMessage"
+              OnValidSubmit="@CreateSupportMessage"
+              FormName="CreateSupportForm">
 
+        <DataAnnotationsValidator />
 
-<EditForm Model="@supportMessage"
-          OnValidSubmit="@CreateSupportMessage"
-          FormName="CreateSupportForm">
+        <ValidationSummary />
 
-    <DataAnnotationsValidator />
+        <div class="form-grid">
+            <div class="mb-3">
+                <label class="form-label">Navn</label>
+                <InputText class="form-control" @bind-Value="supportMessage.Name" />
+                <ValidationMessage For="@(() => supportMessage.Name)" />
+            </div>
 
-    <ValidationSummary />
+            <div class="mb-3">
+                <label class="form-label">E-mail</label>
+                <InputText class="form-control" @bind-Value="supportMessage.Email" />
+                <ValidationMessage For="@(() => supportMessage.Email)" />
+            </div>
 
+            <div class="mb-3">
+                <label class="form-label">Telefonnummer</label>
+                <InputText class="form-control" @bind-Value="supportMessage.Phone" />
+                <ValidationMessage For="@(() => supportMessage.Phone)" />
+            </div>
 
-    <div class="mb-3">
+            <div class="mb-3">
+                <label class="form-label">Kategori</label>
+                <InputSelect class="form-select" @bind-Value="supportMessage.Category">
+                    <option value="">Vælg kategori</option>
+                    <option value="Teknisk">Teknisk problem</option>
+                    <option value="Konto">Konto</option>
+                    <option value="Betaling">Betaling</option>
+                    <option value="Andet">Andet</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => supportMessage.Category)" />
+            </div>
+        </div>
 
-        <label class="form-label">
-            Navn
-        </label>
+        <div class="mb-3">
+            <label class="form-label">Beskrivelse</label>
+            <InputTextArea class="form-control" rows="5" @bind-Value="supportMessage.Description" />
+            <ValidationMessage For="@(() => supportMessage.Description)" />
+        </div>
 
-        <InputText
-            class="form-control"
-            @bind-Value="supportMessage.Name" />
-
-        <ValidationMessage
-            For="@(() => supportMessage.Name)" />
-
-    </div>
-
-
-    <div class="mb-3">
-
-        <label class="form-label">
-            E-mail
-        </label>
-
-        <InputText
-            class="form-control"
-            @bind-Value="supportMessage.Email" />
-
-        <ValidationMessage
-            For="@(() => supportMessage.Email)" />
-
-    </div>
-
-
-    <div class="mb-3">
-
-        <label class="form-label">
-            Telefonnummer
-        </label>
-
-        <InputText
-            class="form-control"
-            @bind-Value="supportMessage.Phone" />
-
-        <ValidationMessage
-            For="@(() => supportMessage.Phone)" />
-
-    </div>
-
-
-    <div class="mb-3">
-
-        <label class="form-label">
-            Kategori
-        </label>
-
-        <InputSelect
-            class="form-select"
-            @bind-Value="supportMessage.Category">
-
-            <option value="">
-                Vælg kategori
-            </option>
-
-            <option value="Teknisk">
-                Teknisk problem
-            </option>
-
-            <option value="Konto">
-                Konto
-            </option>
-
-            <option value="Betaling">
-                Betaling
-            </option>
-
-            <option value="Andet">
-                Andet
-            </option>
-
-        </InputSelect>
-
-        <ValidationMessage
-            For="@(() => supportMessage.Category)" />
-
-    </div>
-
-
-    <div class="mb-3">
-
-        <label class="form-label">
-            Beskrivelse
-        </label>
-
-        <InputTextArea
-            class="form-control"
-            rows="5"
-            @bind-Value="supportMessage.Description" />
-
-        <ValidationMessage
-            For="@(() => supportMessage.Description)" />
-
-    </div>
-
-
-    <button
-        type="submit"
-        class="btn btn-primary"
-        disabled="@isSaving">
-
-        @if (isSaving)
-        {
-            <span>Opretter...</span>
-        }
-        else
-        {
-            <span>Opret henvendelse</span>
-        }
-
-    </button>
-
-</EditForm>
-
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary" disabled="@isSaving">
+                @if (isSaving)
+                {
+                    <span>Opretter...</span>
+                }
+                else
+                {
+                    <span>Opret henvendelse</span>
+                }
+            </button>
+        </div>
+    </EditForm>
+</div>
 
 @if (!string.IsNullOrEmpty(successMessage))
 {
     <div class="alert alert-success mt-3">
-
         @successMessage
-
     </div>
 }
-
 
 @if (!string.IsNullOrEmpty(errorMessage))
 {
     <div class="alert alert-danger mt-3">
-
         @errorMessage
-
     </div>
 }
-
 
 @code {
 

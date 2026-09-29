@@ -1,0 +1,192 @@
+/* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 32px 0 72px;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    width: 640px;
+    max-width: 100%;
+    height: 420px;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(0, 113, 227, 0.22), transparent);
+    filter: blur(40px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero-title {
+    font-size: clamp(2.75rem, 8vw, 5rem);
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    margin: 0 0 20px;
+}
+
+.hero-lead {
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.35;
+    color: var(--muted);
+    max-width: 28ch;
+    margin: 0 auto;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+}
+
+.hero-link {
+    font-size: 1.0625rem;
+    color: var(--blue);
+}
+
+/* ---------- Eksempelkort ---------- */
+.preview {
+    width: min(420px, 100%);
+    margin: 56px auto 0;
+    padding: 24px 28px;
+    text-align: left;
+    background: var(--surface);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10), 0 2px 6px rgba(0, 0, 0, 0.04);
+    transform: rotate(-1.5deg);
+}
+
+.preview-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.preview-name { font-weight: 600; font-size: 1.0625rem; }
+
+.preview-pill {
+    background: var(--blue-tint);
+    color: var(--blue);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 980px;
+}
+
+.preview-text { margin: 10px 0 16px; color: var(--text); }
+
+.preview-line { height: 1px; background: var(--line); margin-bottom: 12px; }
+
+.preview-meta {
+    display: flex;
+    gap: 20px;
+    font-size: 0.8125rem;
+    color: var(--muted);
+}
+
+/* ---------- Bento ---------- */
+.bento {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+}
+
+.bento-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    padding: 36px;
+    background: var(--surface);
+    border-radius: 28px;
+    color: var(--text);
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: scale(1.015);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10);
+    text-decoration: none;
+}
+
+.bento-primary {
+    background: linear-gradient(135deg, #0071e3 0%, #5e5ce6 100%);
+    color: #fff;
+}
+
+.bento-title {
+    font-size: 1.9rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    margin: 0 0 8px;
+}
+
+.bento-text { margin: 0; max-width: 26ch; color: var(--muted); }
+.bento-primary .bento-text { color: rgba(255, 255, 255, 0.82); }
+
+.bento-cta {
+    margin-top: auto;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: #fff;
+}
+.bento-cta-blue { color: var(--blue); }
+
+/* ---------- Trin ---------- */
+.steps { padding-top: 96px; }
+
+.steps-title {
+    text-align: center;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 40px;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.step { text-align: center; }
+
+.step-num {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--blue-tint);
+    color: var(--blue);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.step-head {
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin: 0 0 6px;
+}
+
+.step-text {
+    color: var(--muted);
+    font-size: 0.9375rem;
+    margin: 0 auto;
+    max-width: 24ch;
+}
+
+/* ---------- Mobil ---------- */
+@media (max-width: 640px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento-card { min-height: 200px; padding: 28px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 28px; }
+    .preview { transform: none; }
+}

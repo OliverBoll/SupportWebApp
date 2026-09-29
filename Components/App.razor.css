@@ -1,0 +1,140 @@
+/* ===== Design tokens ===== */
+:root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #6e6e73;
+    --line: rgba(0, 0, 0, 0.08);
+    --field: #d2d2d7;
+    --nav-bg: rgba(245, 245, 247, 0.72);
+    --pill-track: rgba(0, 0, 0, 0.05);
+    --blue: #0071e3;
+    --blue-hover: #0077ed;
+    --blue-tint: rgba(0, 113, 227, 0.1);
+    --red: #d70015;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #000000;
+        --surface: #1c1c1e;
+        --text: #f5f5f7;
+        --muted: #98989d;
+        --line: rgba(255, 255, 255, 0.12);
+        --field: #3a3a3c;
+        --nav-bg: rgba(22, 22, 23, 0.72);
+        --pill-track: rgba(255, 255, 255, 0.08);
+        --blue: #2997ff;
+        --blue-hover: #4aa8ff;
+        --blue-tint: rgba(41, 151, 255, 0.16);
+        --red: #ff453a;
+    }
+}
+
+/* ===== Base ===== */
+html, body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.47;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+:focus-visible { outline: 3px solid var(--blue-tint); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+}
+
+/* ===== Page headings (shared) ===== */
+.page-header { margin-bottom: 40px; }
+
+.page-title {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.07;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 12px;
+}
+
+.page-lead {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--muted);
+    margin: 0;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    font-size: 1.0625rem;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 980px;
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+.btn-primary { background: var(--blue); color: #fff; }
+.btn-primary:hover, .btn-primary:focus { background: var(--blue-hover); color: #fff; }
+.btn-primary:disabled { background: var(--blue); color: #fff; opacity: 0.45; }
+
+/* ===== Form fields (rendered by Blazor components, so kept global) ===== */
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.form-control, .form-select {
+    font-size: 1.0625rem;
+    padding: 12px 14px;
+    background-color: var(--bg);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    color: var(--text);
+    box-shadow: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control:hover, .form-select:hover { border-color: var(--field); }
+
+.form-control:focus, .form-select:focus {
+    background-color: var(--surface);
+    color: var(--text);
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px var(--blue-tint);
+}
+
+textarea.form-control { resize: vertical; }
+
+/* ===== Validation ===== */
+.validation-message { color: var(--red); font-size: 0.8125rem; margin-top: 6px; }
+
+.form-control.invalid, .form-select.invalid { border-color: var(--red); }
+
+.validation-errors {
+    background: rgba(215, 0, 21, 0.08);
+    color: var(--red);
+    border-radius: 12px;
+    padding: 14px 18px 14px 36px;
+    margin: 0 0 24px;
+    font-size: 0.9375rem;
+}
+.validation-errors:empty { display: none; }
+
+/* ===== Alerts ===== */
+.alert {
+    border: none;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 0.9375rem;
+}
+.alert-success { background: rgba(52, 199, 89, 0.14); color: #248a3d; }
+.alert-danger  { background: rgba(215, 0, 21, 0.08); color: var(--red); }
+
+@media (prefers-color-scheme: dark) {
+    .alert-success { color: #30d158; }
+}

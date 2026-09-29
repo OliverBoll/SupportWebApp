@@ -10,32 +10,43 @@
 
 <PageTitle>Henvendelser</PageTitle>
 
-<h1>Henvendelser</h1>
+<header class="page-header">
+    <h1 class="page-title">Henvendelser</h1>
+    @if (messages != null && messages.Count > 0)
+    {
+        <p class="page-lead">@messages.Count i alt</p>
+    }
+</header>
 
 @if (messages == null)
 {
-    <p>Indlæser...</p>
+    <p class="state">Indlæser...</p>
 }
 else if (messages.Count == 0)
 {
-    <p>Ingen henvendelser fundet.</p>
+    <p class="state">Ingen henvendelser fundet.</p>
 }
 else
 {
-    @foreach (var message in messages)
-    {
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5>@message.Name</h5>
+    <div class="ticket-list">
+        @foreach (var message in messages)
+        {
+            <section class="ticket">
+                <div class="ticket-head">
+                    <h2 class="ticket-name">@message.Name</h2>
+                    <span class="pill">@message.Category</span>
+                </div>
 
-                <p><strong>Email:</strong> @message.Email</p>
-                <p><strong>Telefon:</strong> @message.Phone</p>
-                <p><strong>Kategori:</strong> @message.Category</p>
-                <p><strong>Beskrivelse:</strong> @message.Description</p>
-                <p><strong>Dato:</strong> @message.Date</p>
-            </div>
-        </div>
-    }
+                <p class="ticket-desc">@message.Description</p>
+
+                <div class="ticket-meta">
+                    <span>@message.Email</span>
+                    <span>@message.Phone</span>
+                    <span>@message.Date</span>
+                </div>
+            </section>
+        }
+    </div>
 }
 
 @code {
